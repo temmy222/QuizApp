@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:padding="5dp"
+    android:orientation="vertical"
+    android:background="#96fab3">
+
+    <TextView
+        android:id="@+id/txtTotalQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="22sp"
+        android:text="Questions: 1/10"
+        android:gravity="center_horizontal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginStart="2dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="22sp"
+            android:text="Score: 1/10"
+            android:gravity="center_horizontal"
+             />
+
+        <TextView
+            android:id="@+id/txtCorrect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="#2B2B2B"
+            android:textSize="22sp"
+            android:text=" Correct: 5"
+            android:gravity="center_horizontal" />
+
+        <TextView
+        android:id="@+id/txtWrong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="#FB0808"
+        android:textSize="22sp"
+        android:text=" Wrong : 5"
+        android:gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/txtTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="22sp"
+            android:text=" 00:30"
+            android:gravity="center_horizontal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/question_container_background"
+            android:padding="10dp"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:text="Who is the first democratically elected president of Nigeria?" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/radio_button1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#000"
+                android:textSize="22sp"
+                android:text="RadioButton"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:background="@drawable/buttons_background"
+                android:padding="12sp"
+                android:layout_marginTop="10dp"
+                android:button="@null"
+                android:freezesText="true"
+                />
+
+            <RadioButton
+                android:id="@+id/radio_button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#000"
+                android:textSize="22sp"
+                android:text="RadioButton"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:background="@drawable/buttons_background"
+                android:padding="12sp"
+                android:layout_marginTop="10dp"
+                android:button="@null"
+                android:freezesText="true" />
+
+            <RadioButton
+                android:id="@+id/radio_button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#000"
+                android:textSize="22sp"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:background="@drawable/buttons_background"
+                android:text="RadioButton"
+                android:padding="12sp"
+                android:layout_marginTop="10dp"
+                android:button="@null"
+                android:freezesText="true" />
+
+            <RadioButton
+                android:id="@+id/radio_button4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/buttons_background"
+                android:textColor="#000"
+                android:textSize="22sp"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:text="RadioButton"
+                android:padding="12sp"
+                android:layout_marginTop="10dp"
+                android:button="@null"
+                android:freezesText="true" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:textSize="25sp"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:background="@drawable/confirm_button_background"
+             />
+    </LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
