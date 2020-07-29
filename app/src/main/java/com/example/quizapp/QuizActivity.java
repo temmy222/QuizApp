@@ -2,7 +2,9 @@ package com.example.quizapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -29,7 +31,9 @@ public class QuizActivity extends AppCompatActivity {
     private int questionCounter;
     private int questionTotalCount;
     private Questions currentQuestions;
-    private boolean answer;
+    private boolean answerd;
+
+    private Handler handler = new Handler();
 
 
     @Override
@@ -73,6 +77,23 @@ public class QuizActivity extends AppCompatActivity {
             rb3.setText(currentQuestions.getOption3());
             rb4.setText(currentQuestions.getOption4());
 
-    }
+            questionCounter++;
+            answerd = false;
+
+            buttonConfirmNext.setText("Confirm");
+            textViewQuestionCount.setText("Questions " + questionCounter + " / " + questionTotalCount);
+
+    } else{
+            handler.postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+
+                    Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
+                    startActivity(intent);
+
+                }
+            }, 500);
+        }
     }
 }
