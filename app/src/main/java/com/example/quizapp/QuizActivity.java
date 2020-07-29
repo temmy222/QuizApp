@@ -70,9 +70,9 @@ public class QuizActivity extends AppCompatActivity {
         rbGroup.clearCheck();  // clear the previous check mark of the quiz
 
         if (questionCounter < questionTotalCount){
-            currentQuestions = questionList.get(questionCounter);
-            textViewQuestions.setText(currentQuestions.getQuestion());
-            rb1.setText(currentQuestions.getOption1());
+            currentQuestions = questionList.get(questionCounter); // get the question class that corresponds to the particular questionCounter from the database
+            textViewQuestions.setText(currentQuestions.getQuestion()); // from the class get the question and set it to show in the question box in the activity (UI)
+            rb1.setText(currentQuestions.getOption1()); // from the class get the option and set it to show in the radio button in the activity (UI)
             rb2.setText(currentQuestions.getOption2());
             rb3.setText(currentQuestions.getOption3());
             rb4.setText(currentQuestions.getOption4());
@@ -80,8 +80,8 @@ public class QuizActivity extends AppCompatActivity {
             questionCounter++;
             answerd = false;
 
-            buttonConfirmNext.setText("Confirm");
-            textViewQuestionCount.setText("Questions " + questionCounter + " / " + questionTotalCount);
+            buttonConfirmNext.setText("Confirm");  // set the button to click to answer the question
+            textViewQuestionCount.setText("Questions " + questionCounter + " / " + questionTotalCount); // set the question counter at the top
 
     } else{
             handler.postDelayed(new Runnable() {

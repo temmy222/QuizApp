@@ -15,13 +15,13 @@ import java.util.List;
 public class QuizDBHelper extends SQLiteOpenHelper  {
 
 
-    private static final String DATABASE_NAME = "MomoQuiz";
-    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "MomoQuiz"; //name of the database
+    private static final int DATABASE_VERSION = 1; // version of the database
 
-    private SQLiteDatabase db;
+    private SQLiteDatabase db;  // SQLiteDatabase instance
 
     public QuizDBHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION); // constructor that is called when this class is created. It takes in only context
     }
 
     @Override
@@ -37,7 +37,7 @@ public class QuizDBHelper extends SQLiteOpenHelper  {
                 QuestionTable.COLUMN_OPTION3 + " TEXT, " +
                 QuestionTable.COLUMN_OPTION4 + " TEXT, " +
                 QuestionTable.COLUMN_ANSWER_NR + " INTEGER" +
-                ")";
+                ")";                       // creating the SQL syntax used to create the table
 
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);  // creating the question table
 
@@ -49,27 +49,27 @@ public class QuizDBHelper extends SQLiteOpenHelper  {
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
 
-        db.execSQL("DROP TABLE IF EXISTS " + QuestionTable.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + QuestionTable.TABLE_NAME); // drops the existing database and upgrades to a new one
         onCreate(db);
 
     }
 
     private void addQuestion(Questions question){
         ContentValues cv = new ContentValues(); // used to add values to the database
-        cv.put(QuestionTable.COLUMN_QUESTION, question.getQuestion());
+        cv.put(QuestionTable.COLUMN_QUESTION, question.getQuestion()); // get the question from the question class and add it to the contentvalues class
         cv.put(QuestionTable.COLUMN_OPTION1, question.getOption1());
         cv.put(QuestionTable.COLUMN_OPTION2, question.getOption2());
         cv.put(QuestionTable.COLUMN_OPTION3, question.getOption3());
         cv.put(QuestionTable.COLUMN_OPTION4, question.getOption4());
         cv.put(QuestionTable.COLUMN_ANSWER_NR, question.getAnswerNr());
 
-        db.insert(QuestionTable.TABLE_NAME, null, cv);
+        db.insert(QuestionTable.TABLE_NAME, null, cv); // insert the values gotten into the database
 
     }
 
     private void fillQuestionTable() {
         Questions q1 = new Questions(" What is the Capital of Ghana ", " Abuja ", " Accra ", " Lome ", " Ouagadougou ", 2);
-        addQuestion(q1);
+        addQuestion(q1); // add many questions to the database
 
         Questions q2 = new Questions(" Who is the first democratically elected President of Nigeria ", " Olusegun Obasanjo ", " Ernest Shonekan ", " Yakubu Gowon ", " Sani Abacha ", 1);
         addQuestion(q2);
@@ -85,9 +85,9 @@ public class QuizDBHelper extends SQLiteOpenHelper  {
     }
 
     public ArrayList<Questions> getAllQuestions() {
-        ArrayList<Questions> questionsList = new ArrayList<>();
+        ArrayList<Questions> questionsList = new ArrayList<>(); // create an ArrayList of question classes to store all the questions
 
-        db = getReadableDatabase();
+        db = getReadableDatabase(); // read the database
         String Projection[] = {
                 QuestionTable._ID,
                 QuestionTable.COLUMN_QUESTION,

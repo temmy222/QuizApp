@@ -5,7 +5,7 @@ import android.provider.BaseColumns;
 public final class QuizContract {
 
     public QuizContract() {
-    }
+    }  // this class is used to create the name of the columns in the database to avoid errors if creating one by one
 
     public static class QuestionTable implements BaseColumns {
         public static final String TABLE_NAME = "quiz_questions";

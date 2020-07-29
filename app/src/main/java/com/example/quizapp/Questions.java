@@ -9,7 +9,7 @@ public class Questions {
     private String option4;
     private int answerNr;
 
-    public Questions(){}
+    public Questions(){} // this class creates a question, its options and its answer
 
     public Questions(String question, String option1, String option2, String option3, String option4, int answerNr) {
         this.question = question;
