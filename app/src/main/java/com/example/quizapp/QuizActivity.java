@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class QuizActivity extends AppCompatActivity {
 
-    private RadioGroup rdGroup;
+    private RadioGroup rbGroup;
     private RadioButton rb1;
     private RadioButton rb2;
     private RadioButton rb3;
@@ -49,7 +49,7 @@ public class QuizActivity extends AppCompatActivity {
         textViewScore = findViewById(R.id.txtScore);
 
         buttonConfirmNext = findViewById(R.id.button);
-        rdGroup = findViewById(R.id.radio_group);
+        rbGroup = findViewById(R.id.radio_group);
         rb1 = findViewById(R.id.radio_button1);
         rb2 = findViewById(R.id.radio_button2);
         rb3 = findViewById(R.id.radio_button3);
@@ -59,5 +59,20 @@ public class QuizActivity extends AppCompatActivity {
     private void fetchDB(){
         QuizDBHelper dbHelper = new QuizDBHelper(this );
         questionList = dbHelper.getAllQuestions();
+    }
+
+    private void showQuestions()
+    {
+        rbGroup.clearCheck();  // clear the previous check mark of the quiz
+
+        if (questionCounter < questionTotalCount){
+            currentQuestions = questionList.get(questionCounter);
+            textViewQuestions.setText(currentQuestions.getQuestion());
+            rb1.setText(currentQuestions.getOption1());
+            rb2.setText(currentQuestions.getOption2());
+            rb3.setText(currentQuestions.getOption3());
+            rb4.setText(currentQuestions.getOption4());
+
+    }
     }
 }
