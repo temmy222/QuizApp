@@ -2,11 +2,15 @@ package com.example.quizapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.example.quizapp.QuizContract.*;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuizDBHelper extends SQLiteOpenHelper  {
 
@@ -36,6 +40,8 @@ public class QuizDBHelper extends SQLiteOpenHelper  {
                 ")";
 
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);  // creating the question table
+
+        fillQuestionTable(); // insert the data into the table
 
 
     }
@@ -68,13 +74,49 @@ public class QuizDBHelper extends SQLiteOpenHelper  {
         Questions q2 = new Questions(" Who is the first democratically elected President of Nigeria ", " Olusegun Obasanjo ", " Ernest Shonekan ", " Yakubu Gowon ", " Sani Abacha ", 1);
         addQuestion(q2);
 
-        Questions q3 = new Questions(" What is the Men National Football Team of Cameroon popularly called ", " Black Stars ", " Red Devils ", " Lome ", " Ouagadougou ", 2);
+        Questions q3 = new Questions(" What is the Men National Football Team of Cameroon popularly called ", " Black Stars ", " Red Devils ", " Indomitable Lions ", " Bafana Bafana ", 3);
         addQuestion(q3);
 
-        Questions q4 = new Questions(" What is the Capital of Ghana ", " Abuja ", " Accra ", " Lome ", " Ouagadougou ", 2);
+        Questions q4 = new Questions(" What is the former Name of Zimbabwe ", " Gold Coast ", " Rhodesia ", " Dahomey ", " Somalia ", 2);
         addQuestion(q4);
 
-        Questions q5 = new Questions(" What is the Capital of Ghana ", " Abuja ", " Accra ", " Lome ", " Ouagadougou ", 2);
+        Questions q5 = new Questions(" What is the currency of Tunisia called ", " Naira ", " Cedi ", " Francs ", " Dinar ", 4);
         addQuestion(q5);
+    }
+
+    public ArrayList<Questions> getAllQuestions() {
+        List<Questions> questionsList = new ArrayList<>();
+
+        db = getReadableDatabase();
+        String Projection[] = {
+                QuestionTable._ID,
+                QuestionTable.COLUMN_QUESTION,
+                QuestionTable.COLUMN_OPTION1,
+                QuestionTable.COLUMN_OPTION2,
+                QuestionTable.COLUMN_OPTION3,
+                QuestionTable.COLUMN_OPTION4,
+                QuestionTable.COLUMN_ANSWER_NR
+        }; // input to the query
+
+        Cursor c = db.query(QuestionTable.TABLE_NAME,
+                Projection,
+                null,
+                null,
+                null,
+                null,
+                null
+        );  // used to query the database
+
+        if (c.moveToFirst()) {
+            do {
+                Questions questions = new Questions();
+                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_QUESTION)));
+                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION1)));
+                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION2)));
+                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION3)));
+                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION4)));
+                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_ANSWER_NR)));
+            } while (c.moveToNext());
+        }
     }
 }
