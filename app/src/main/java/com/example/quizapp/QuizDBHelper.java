@@ -85,7 +85,7 @@ public class QuizDBHelper extends SQLiteOpenHelper  {
     }
 
     public ArrayList<Questions> getAllQuestions() {
-        List<Questions> questionsList = new ArrayList<>();
+        ArrayList<Questions> questionsList = new ArrayList<>();
 
         db = getReadableDatabase();
         String Projection[] = {
@@ -116,7 +116,13 @@ public class QuizDBHelper extends SQLiteOpenHelper  {
                 questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION3)));
                 questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION4)));
                 questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_ANSWER_NR)));
-            } while (c.moveToNext());
+
+                questionsList.add(questions);
+            } while (c.moveToNext());  // this basically uses the cursor and moves line by line through the db.
+            // It gets the column index of the question table, gets the string in that table for that line and
+            // sets it to the question class
         }
+        c.close(); // closing the cursor
+        return questionsList;
     }
 }
