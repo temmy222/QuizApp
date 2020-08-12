@@ -89,6 +89,8 @@ public class QuizActivity extends AppCompatActivity {
                         quizOperations();
                     }
                     else{
+
+                        // if none is selected and user attempts to click next; warn user not to proceed yet using Toast class
                         String textToast = "Please select option";
                         Toast.makeText(QuizActivity.this, textToast, Toast.LENGTH_SHORT );
                     }
@@ -100,7 +102,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void quizOperations() {
-        answerd = true;
+        answerd = true; // before entering this method, a radio button must have been clicked
 
         RadioButton rbselected = findViewById(rbGroup.getCheckedRadioButtonId());
         int answerNr = rbGroup.indexOfChild(rbselected) + 1 ;
