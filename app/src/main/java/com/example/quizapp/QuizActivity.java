@@ -46,7 +46,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void setupUI() {
-        textViewCorrect = findViewById(R.id.txtCorrect);
+        textViewCorrect = findViewById(R.id.txtCorrect); // finds the button in the activity and assigns it to a variable in Java for subsequent use
         textViewWrong = findViewById(R.id.txtWrong);
         textViewCountDown = findViewById(R.id.txtTimer);
         textViewQuestionCount = findViewById(R.id.txtTotalQuestion);
