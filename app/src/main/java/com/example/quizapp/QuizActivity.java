@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -56,6 +57,7 @@ public class QuizActivity extends AppCompatActivity {
         textViewCountDown = findViewById(R.id.txtTimer);
         textViewQuestionCount = findViewById(R.id.txtTotalQuestion);
         textViewScore = findViewById(R.id.txtScore);
+        textViewQuestions = findViewById(R.id.textView2);
 
         buttonConfirmNext = findViewById(R.id.button);
         rbGroup = findViewById(R.id.radio_group);
@@ -119,7 +121,58 @@ public class QuizActivity extends AppCompatActivity {
 
                     rb1.setBackground(ContextCompat.getDrawable(this, R.drawable.when_answer_correct));
                 }
+                else {
+                    changeToIncorrectColor(rbselected);
+
+                }
+                showQuestions();
+                break;
+            case 2:
+
+                if (currentQuestions.getAnswerNr() == answerNr) {
+
+                    rb2.setBackground(ContextCompat.getDrawable(this, R.drawable.when_answer_correct));
+                }
+                else {
+                    changeToIncorrectColor(rbselected);
+
+                }
+                showQuestions();
+
+                break;
+
+            case 3:
+                if (currentQuestions.getAnswerNr() == answerNr) {
+
+                    rb3.setBackground(ContextCompat.getDrawable(this, R.drawable.when_answer_correct));
+                }
+                else {
+                    changeToIncorrectColor(rbselected);
+
+                }
+                showQuestions();
+                break;
+
+            case 4:
+                if (currentQuestions.getAnswerNr() == answerNr) {
+
+                    rb4.setBackground(ContextCompat.getDrawable(this, R.drawable.when_answer_correct));
+                }
+                else {
+                    changeToIncorrectColor(rbselected);
+
+                }
+                showQuestions();
+                break;
+        } // end of the switch case statement
+
+        if (questionCounter < questionTotalCount) {
+            buttonConfirmNext.setText("Confirm and Finish");
         }
+    }
+
+    private void changeToIncorrectColor(RadioButton rbselected) {
+        rbselected.setBackground(ContextCompat.getDrawable(this, R.drawable.when_answer_wrong));
     }
 
     private void showQuestions()
@@ -129,6 +182,7 @@ public class QuizActivity extends AppCompatActivity {
         if (questionCounter < questionTotalCount){
             currentQuestions = questionList.get(questionCounter); // get the question class that corresponds to the particular questionCounter from the database
             textViewQuestions.setText(currentQuestions.getQuestion()); // from the class get the question and set it to show in the question box in the activity (UI)
+            Log.d("Message Output" ,currentQuestions.getQuestion());
             rb1.setText(currentQuestions.getOption1()); // from the class get the option and set it to show in the radio button in the activity (UI)
             rb2.setText(currentQuestions.getOption2());
             rb3.setText(currentQuestions.getOption3());
