@@ -11,7 +11,7 @@
         android:id="@+id/txtTotalQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:textStyle="bold"
         android:textAlignment="center"
         android:textColor="#000"
@@ -23,7 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
 
         <TextView
             android:id="@+id/txtScore"
@@ -96,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/question_container_background"
-            android:padding="10dp"
+            android:padding="20dp"
             android:gravity="center"
             android:textSize="25sp"
             android:textStyle="bold"

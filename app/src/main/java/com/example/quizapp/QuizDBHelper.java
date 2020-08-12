@@ -96,7 +96,7 @@ public class QuizDBHelper extends SQLiteOpenHelper  {
                 QuestionTable.COLUMN_OPTION3,
                 QuestionTable.COLUMN_OPTION4,
                 QuestionTable.COLUMN_ANSWER_NR
-        }; // input to the query
+        }; // input parameters to the query statement
 
         Cursor c = db.query(QuestionTable.TABLE_NAME,
                 Projection,
@@ -120,7 +120,7 @@ public class QuizDBHelper extends SQLiteOpenHelper  {
                 questionsList.add(questions);
             } while (c.moveToNext());  // this basically uses the cursor and moves line by line through the db.
             // It gets the column index of the question table, gets the string in that table for that line and
-            // sets it to the question class
+            // sets it to the question class and then finally to the question list arraylist
         }
         c.close(); // closing the cursor
         return questionsList;

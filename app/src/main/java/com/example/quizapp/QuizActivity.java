@@ -1,16 +1,21 @@
 package com.example.quizapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -63,6 +68,56 @@ public class QuizActivity extends AppCompatActivity {
     private void fetchDB(){
         QuizDBHelper dbHelper = new QuizDBHelper(this );
         questionList = dbHelper.getAllQuestions();
+
+        startQuiz();  // function to start the quiz after getting all questions from the database
+    }
+
+    private void startQuiz() {
+        questionTotalCount = questionList.size();
+        Collections.shuffle(questionList); // used to randomly shuffle the questions from the database
+
+        showQuestions(); //show the questions
+
+        // listen for a click event from the button
+        buttonConfirmNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!answerd){
+
+                    // check that one of the buttons has been clicked before moving to the quizOperation method to check the calculations
+                    if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()){
+                        quizOperations();
+                    }
+                    else{
+                        String textToast = "Please select option";
+                        Toast.makeText(QuizActivity.this, textToast, Toast.LENGTH_SHORT );
+                    }
+                }
+            }
+        });
+
+
+    }
+
+    private void quizOperations() {
+        answerd = true;
+
+        RadioButton rbselected = findViewById(rbGroup.getCheckedRadioButtonId());
+        int answerNr = rbGroup.indexOfChild(rbselected) + 1 ;
+
+        checkSolution(answerNr, rbselected);
+    }
+
+    private void checkSolution(int answerNr, RadioButton rbselected) {
+
+        switch(currentQuestions.getAnswerNr()){
+
+            case 1:
+                if (currentQuestions.getAnswerNr() == answerNr) {
+
+                    rb1.setBackground(ContextCompat.getDrawable(this, R.drawable.when_answer_correct));
+                }
+        }
     }
 
     private void showQuestions()
