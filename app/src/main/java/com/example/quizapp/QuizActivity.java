@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -42,6 +43,8 @@ public class QuizActivity extends AppCompatActivity {
 
     private Handler handler = new Handler();
 
+    private ColorStateList buttonLabelColor;  // will be used to change the color of the text view labels
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,8 @@ public class QuizActivity extends AppCompatActivity {
 
         setupUI();
         fetchDB();
+
+        buttonLabelColor = rb1.getTextColors();
     }
 
     private void setupUI() {
@@ -83,6 +88,52 @@ public class QuizActivity extends AppCompatActivity {
 
         showQuestions(); //show the questions
 
+        //shows what happens when a button is selected
+        rbGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()  {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                switch (checkedId) {
+
+                    case R.id.radio_button1:
+                        rb1.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.when_answer_selected));
+                        rb2.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.buttons_background));
+                        rb3.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.buttons_background));
+                        rb4.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.buttons_background));
+
+                        break;
+
+                    case R.id.radio_button2:
+                        rb2.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.when_answer_selected));
+                        rb1.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.buttons_background));
+                        rb3.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.buttons_background));
+                        rb4.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.buttons_background));
+
+                        break;
+
+                    case R.id.radio_button3:
+                        rb3.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.when_answer_selected));
+                        rb1.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.buttons_background));
+                        rb2.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.buttons_background));
+                        rb4.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.buttons_background));
+
+                        break;
+
+                    case R.id.radio_button4:
+                        rb4.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.when_answer_selected));
+                        rb1.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.buttons_background));
+                        rb3.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.buttons_background));
+                        rb2.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.buttons_background));
+
+                        break;
+
+
+
+                }
+
+            }
+        });
+
         // listen for a click event from the button
         buttonConfirmNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +148,7 @@ public class QuizActivity extends AppCompatActivity {
 
                         // if none is selected and user attempts to click next; warn user not to proceed yet using Toast class
                         String textToast = "Please select option";
-                        Toast.makeText(QuizActivity.this, textToast, Toast.LENGTH_SHORT );
+                        Toast.makeText(QuizActivity.this, textToast, Toast.LENGTH_SHORT ).show();
                     }
                 }
             }
@@ -182,6 +233,7 @@ public class QuizActivity extends AppCompatActivity {
     private void showQuestions()
     {
         rbGroup.clearCheck();  // clear the previous check mark of the quiz
+
 
         if (questionCounter < questionTotalCount){
             currentQuestions = questionList.get(questionCounter); // get the question class that corresponds to the particular questionCounter from the database
