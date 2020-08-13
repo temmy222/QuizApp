@@ -186,7 +186,7 @@ public class QuizActivity extends AppCompatActivity {
         if (questionCounter < questionTotalCount){
             currentQuestions = questionList.get(questionCounter); // get the question class that corresponds to the particular questionCounter from the database
             textViewQuestions.setText(currentQuestions.getQuestion()); // from the class get the question and set it to show in the question box in the activity (UI)
-            Log.d("Message Output" , currentQuestions.getQuestion());
+            Log.d("Message Output" , currentQuestions.getQuestion()); // used for debugging purposes
             rb1.setText(currentQuestions.getOption1()); // from the class get the option and set it to show in the radio button in the activity (UI)
             rb2.setText(currentQuestions.getOption2());
             rb3.setText(currentQuestions.getOption3());
