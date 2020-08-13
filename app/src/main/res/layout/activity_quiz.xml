@@ -38,9 +38,9 @@
             android:textAlignment="center"
             android:textColor="#000"
             android:textSize="22sp"
-            android:text="Score: 1/10"
+            android:text="Score: 0"
             android:gravity="center_horizontal"
-             />
+            android:layout_marginLeft="2dp" />
 
         <TextView
             android:id="@+id/txtCorrect"
@@ -49,26 +49,26 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
-            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:text=" Correct: 0"
             android:textAlignment="center"
             android:textColor="#2B2B2B"
             android:textSize="22sp"
-            android:text=" Correct: 5"
-            android:gravity="center_horizontal" />
+            android:textStyle="bold" />
 
         <TextView
-        android:id="@+id/txtWrong"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textColor="#FB0808"
-        android:textSize="22sp"
-        android:text=" Wrong : 5"
-        android:gravity="center_horizontal" />
+            android:id="@+id/txtWrong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center_horizontal"
+            android:text=" Wrong : 0"
+            android:textAlignment="center"
+            android:textColor="#FB0808"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtTimer"
