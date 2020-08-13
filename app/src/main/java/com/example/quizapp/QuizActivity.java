@@ -49,6 +49,10 @@ public class QuizActivity extends AppCompatActivity {
     private int correctAns = 0, wrongAns=0;
     private int quizScore = 0;
 
+    private FinalScoreDialog finalScoreDialog;
+
+    private int totalSizeofQuiz=0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,8 @@ public class QuizActivity extends AppCompatActivity {
         fetchDB();
 
         buttonLabelColor = rb1.getTextColors();
+
+        finalScoreDialog = new FinalScoreDialog (this);
     }
 
     private void setupUI() {
@@ -357,13 +363,14 @@ public class QuizActivity extends AppCompatActivity {
             textViewQuestionCount.setText("Questions " + questionCounter + " / " + questionTotalCount); // set the question counter at the top
 
     } else{
+            totalSizeofQuiz = questionList.size();
+
             handler.postDelayed(new Runnable() {
 
                 @Override
                 public void run() {
 
-                    Intent intent = new Intent(getApplicationContext(), QuizActivity.class); // intent used to restart the quiz or start a new Activity
-                    startActivity(intent);
+                    finalScoreDialog.finalScoreDialog(correctAns, wrongAns, totalSizeofQuiz);
 
                 }
             }, 1000);

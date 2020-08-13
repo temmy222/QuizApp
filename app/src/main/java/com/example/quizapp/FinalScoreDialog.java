@@ -17,7 +17,7 @@ public class FinalScoreDialog {
         this.mContext = mContext;
     }
 
-    private void finalScoreDialog (int correctAns, int wrongAns, int totalSizeOfQuiz){
+    public void finalScoreDialog (int correctAns, int wrongAns, int totalSizeOfQuiz){
 
         finalScoreDialog = new Dialog(mContext); // create the dialog
         finalScoreDialog.setContentView(R.layout.final_score_dialog); // set the layout view for the dialog
@@ -63,7 +63,7 @@ public class FinalScoreDialog {
             textViewFinalScore.setText("Final Score: " + String.valueOf(tempScore));
         }
         else if (wrongAns > correctAns) {
-            tempScore =  (wrongAns *5) - (correctAns * 20);
+            tempScore = (correctAns * 20) - (wrongAns *5);
             textViewFinalScore.setText("Final Score: " + String.valueOf(tempScore));
         }
 
