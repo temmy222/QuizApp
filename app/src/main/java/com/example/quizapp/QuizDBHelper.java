@@ -111,11 +111,11 @@ public class QuizDBHelper extends SQLiteOpenHelper  {
             do {
                 Questions questions = new Questions();
                 questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_QUESTION)));
-                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION1)));
-                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION2)));
-                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION3)));
-                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION4)));
-                questions.setQuestion(c.getString(c.getColumnIndex(QuestionTable.COLUMN_ANSWER_NR)));
+                questions.setOption1(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION1)));
+                questions.setOption2(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION2)));
+                questions.setOption3(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION3)));
+                questions.setOption4(c.getString(c.getColumnIndex(QuestionTable.COLUMN_OPTION4)));
+                questions.setAnswerNr(c.getInt(c.getColumnIndex(QuestionTable.COLUMN_ANSWER_NR)));
 
                 questionsList.add(questions);
             } while (c.moveToNext());  // this basically uses the cursor and moves line by line through the db.

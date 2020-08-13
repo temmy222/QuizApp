@@ -37,7 +37,8 @@ public class QuizActivity extends AppCompatActivity {
     private int questionCounter;
     private int questionTotalCount;
     private Questions currentQuestions;
-    private boolean answerd;
+    private boolean answered;
+    private static final String TAG = QuizActivity.class.getSimpleName();
 
     private Handler handler = new Handler();
 
@@ -46,6 +47,8 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+        System.out.println("TAG = " + TAG);
 
         setupUI();
         fetchDB();
@@ -84,7 +87,7 @@ public class QuizActivity extends AppCompatActivity {
         buttonConfirmNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!answerd){
+                if (!answered){
 
                     // check that one of the buttons has been clicked before moving to the quizOperation method to check the calculations
                     if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()){
@@ -104,15 +107,16 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void quizOperations() {
-        answerd = true; // before entering this method, a radio button must have been clicked
+        answered = true; // before entering this method, a radio button must have been clicked
 
-        RadioButton rbselected = findViewById(rbGroup.getCheckedRadioButtonId());
-        int answerNr = rbGroup.indexOfChild(rbselected) + 1 ;
+        RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId());
+        int answerNr = rbGroup.indexOfChild(rbSelected) + 1 ;
 
-        checkSolution(answerNr, rbselected);
+        checkSolution(answerNr, rbSelected);
+        
     }
 
-    private void checkSolution(int answerNr, RadioButton rbselected) {
+    private void checkSolution(int answerNr, RadioButton rbSelected) {
 
         switch(currentQuestions.getAnswerNr()){
 
@@ -122,7 +126,7 @@ public class QuizActivity extends AppCompatActivity {
                     rb1.setBackground(ContextCompat.getDrawable(this, R.drawable.when_answer_correct));
                 }
                 else {
-                    changeToIncorrectColor(rbselected);
+                    changeToIncorrectColor(rbSelected);
 
                 }
                 showQuestions();
@@ -134,7 +138,7 @@ public class QuizActivity extends AppCompatActivity {
                     rb2.setBackground(ContextCompat.getDrawable(this, R.drawable.when_answer_correct));
                 }
                 else {
-                    changeToIncorrectColor(rbselected);
+                    changeToIncorrectColor(rbSelected);
 
                 }
                 showQuestions();
@@ -147,7 +151,7 @@ public class QuizActivity extends AppCompatActivity {
                     rb3.setBackground(ContextCompat.getDrawable(this, R.drawable.when_answer_correct));
                 }
                 else {
-                    changeToIncorrectColor(rbselected);
+                    changeToIncorrectColor(rbSelected);
 
                 }
                 showQuestions();
@@ -159,7 +163,7 @@ public class QuizActivity extends AppCompatActivity {
                     rb4.setBackground(ContextCompat.getDrawable(this, R.drawable.when_answer_correct));
                 }
                 else {
-                    changeToIncorrectColor(rbselected);
+                    changeToIncorrectColor(rbSelected);
 
                 }
                 showQuestions();
@@ -182,14 +186,14 @@ public class QuizActivity extends AppCompatActivity {
         if (questionCounter < questionTotalCount){
             currentQuestions = questionList.get(questionCounter); // get the question class that corresponds to the particular questionCounter from the database
             textViewQuestions.setText(currentQuestions.getQuestion()); // from the class get the question and set it to show in the question box in the activity (UI)
-            Log.d("Message Output" ,currentQuestions.getQuestion());
+            Log.d("Message Output" , currentQuestions.getQuestion());
             rb1.setText(currentQuestions.getOption1()); // from the class get the option and set it to show in the radio button in the activity (UI)
             rb2.setText(currentQuestions.getOption2());
             rb3.setText(currentQuestions.getOption3());
             rb4.setText(currentQuestions.getOption4());
 
             questionCounter++;
-            answerd = false;
+            answered = false;
 
             buttonConfirmNext.setText("Confirm");  // set the button to click to answer the question
             textViewQuestionCount.setText("Questions " + questionCounter + " / " + questionTotalCount); // set the question counter at the top
