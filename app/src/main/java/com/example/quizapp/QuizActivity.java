@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -44,7 +46,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private Handler handler = new Handler(); // handler is used to delay  a function use
 
-    private ColorStateList buttonLabelColor;  // will be used to change the color of the text view labels
+    private ColorStateList defaultTextColor;  // will be used to change the color of the text view labels
 
     private int correctAns = 0, wrongAns=0;
     private int quizScore = 0;
@@ -56,6 +58,10 @@ public class QuizActivity extends AppCompatActivity {
 
     private PlayAudioForAnswers playAudioForAnswers;
     int FLAG = 0;
+
+    private static final long COUNTDOWN_IN_MILLIS = 30000;
+    private CountDownTimer countDownTimer;
+    private long timeLeftInMillis;
 
     private int totalSizeofQuiz=0;
 
@@ -70,7 +76,7 @@ public class QuizActivity extends AppCompatActivity {
         setupUI();
         fetchDB();
 
-        buttonLabelColor = rb1.getTextColors();
+        defaultTextColor = rb1.getTextColors();
 
         finalScoreDialog = new FinalScoreDialog (this);
         correctDialog = new CorrectDialog (this);
@@ -178,6 +184,8 @@ public class QuizActivity extends AppCompatActivity {
 
     private void quizOperations() {
         answered = true; // before entering this method, a radio button must have been clicked
+
+        countDownTimer.cancel();
 
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId());
         int answerNr = rbGroup.indexOfChild(rbSelected) + 1 ; // gets the index value of the radio button
@@ -385,6 +393,87 @@ public class QuizActivity extends AppCompatActivity {
         rbselected.setTextColor(Color.WHITE);
     }
 
+    // the timer code
+
+    private void startCountDown() {
+
+        countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeftInMillis = millisUntilFinished;
+
+                updateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                timeLeftInMillis = 0;
+                updateCountDownText();
+
+            }
+        }.start();
+    }
+
+
+
+
+    private void updateCountDownText(){
+
+        int minutes = (int) (timeLeftInMillis/1000) / 60;
+        int seconds = (int) (timeLeftInMillis/1000) % 60;
+
+        String timeFormatted = String.format(Locale.getDefault(),"&02d:%02d", minutes, seconds);
+        textViewCountDown.setText(timeFormatted);
+
+        if (timeLeftInMillis < 10000){
+            textViewCountDown.setTextColor(Color.RED);
+
+            FLAG = 3;
+
+            playAudioForAnswers.setAudioForAnswer(FLAG);
+
+        }
+        else {
+
+            textViewCountDown.setTextColor(defaultTextColor);
+
+        }
+
+        if (timeLeftInMillis == 0) {
+            Toast.makeText(this, "Times Up", Toast.LENGTH_SHORT).show();
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
+                    startActivity(intent);
+
+                }
+            }, 2000);
+        }
+
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+    }
+
     private void showQuestions()
     {
         rbGroup.clearCheck();  // clear the previous check mark of the quiz
@@ -414,6 +503,8 @@ public class QuizActivity extends AppCompatActivity {
 
             buttonConfirmNext.setText("Confirm");  // set the button to click to answer the question
             textViewQuestionCount.setText("Questions " + questionCounter + " / " + questionTotalCount); // set the question counter at the top
+            timeLeftInMillis = COUNTDOWN_IN_MILLIS;
+            startCountDown();
 
     } else{
             totalSizeofQuiz = questionList.size();
@@ -426,7 +517,8 @@ public class QuizActivity extends AppCompatActivity {
                     finalScoreDialog.finalScoreDialog(correctAns, wrongAns, totalSizeofQuiz);
 
                 }
-            }, 1000);
+            }, 2000);
         }
     }
+
 }

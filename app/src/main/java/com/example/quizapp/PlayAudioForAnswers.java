@@ -25,6 +25,11 @@ public class PlayAudioForAnswers {
                 playMusic(wrongAudio);
                 break;
 
+            case 3:
+                int timerAudio = R.raw.timetick;
+                playMusic(timerAudio);
+                break;
+
         }
     }
 
