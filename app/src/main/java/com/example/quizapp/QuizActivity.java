@@ -52,6 +52,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private FinalScoreDialog finalScoreDialog;
     private CorrectDialog correctDialog;
+    private WrongDialog wrongDialog;
 
     private int totalSizeofQuiz=0;
 
@@ -70,6 +71,7 @@ public class QuizActivity extends AppCompatActivity {
 
         finalScoreDialog = new FinalScoreDialog (this);
         correctDialog = new CorrectDialog (this);
+        wrongDialog = new WrongDialog(this);
     }
 
     private void setupUI() {
@@ -210,6 +212,9 @@ public class QuizActivity extends AppCompatActivity {
                     changeToIncorrectColor(rbSelected);
                     wrongAns++;
                     textViewWrong.setText("Wrong : " + String.valueOf(wrongAns));
+                    String correctAnswer = (String) rb1.getText();
+                    wrongDialog.wrongDialog(correctAnswer);
+
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -247,6 +252,9 @@ public class QuizActivity extends AppCompatActivity {
                     changeToIncorrectColor(rbSelected);
                     wrongAns++;
                     textViewWrong.setText("Wrong : " + String.valueOf(wrongAns));
+                    String correctAnswer = (String) rb2.getText();
+                    wrongDialog.wrongDialog(correctAnswer);
+
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -284,6 +292,9 @@ public class QuizActivity extends AppCompatActivity {
                     changeToIncorrectColor(rbSelected);
                     wrongAns++;
                     textViewWrong.setText("Wrong : " + String.valueOf(wrongAns));
+                    String correctAnswer = (String) rb3.getText();
+                    wrongDialog.wrongDialog(correctAnswer);
+
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -320,6 +331,9 @@ public class QuizActivity extends AppCompatActivity {
                     changeToIncorrectColor(rbSelected);
                     wrongAns++;
                     textViewWrong.setText("Wrong : " + String.valueOf(wrongAns));
+                    String correctAnswer = (String) rb4.getText();
+                    wrongDialog.wrongDialog(correctAnswer);
+
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
