@@ -51,7 +51,7 @@ public class FinalScoreDialog {
 
         if (correctAns == totalSizeOfQuiz) {
 
-            tempScore = (correctAns * 20) - (wrongAns *5);
+            tempScore = (correctAns * 10) - (wrongAns *5);
             textViewFinalScore.setText("Final Score: " + String.valueOf(tempScore));
         }
         else if (wrongAns == totalSizeOfQuiz) {
@@ -59,16 +59,16 @@ public class FinalScoreDialog {
             textViewFinalScore.setText("Final Score: " + String.valueOf(tempScore));
         }
         else if (correctAns > wrongAns) {
-            tempScore = (correctAns * 20) - (wrongAns *5);
+            tempScore = (correctAns * 10) - (wrongAns *5);
             textViewFinalScore.setText("Final Score: " + String.valueOf(tempScore));
         }
         else if (wrongAns > correctAns) {
-            tempScore = (correctAns * 20) - (wrongAns *5);
+            tempScore = (correctAns * 10) - (wrongAns *5);
             textViewFinalScore.setText("Final Score: " + String.valueOf(tempScore));
         }
 
         else if (wrongAns == correctAns) {
-            tempScore = (correctAns * 20) - (wrongAns *5);
+            tempScore = (correctAns * 10) - (wrongAns *5);
             textViewFinalScore.setText("Final Score: " + String.valueOf(tempScore));
         }
 
