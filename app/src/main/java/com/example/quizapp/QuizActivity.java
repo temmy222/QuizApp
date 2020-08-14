@@ -48,8 +48,10 @@ public class QuizActivity extends AppCompatActivity {
 
     private int correctAns = 0, wrongAns=0;
     private int quizScore = 0;
+    int score = 0;
 
     private FinalScoreDialog finalScoreDialog;
+    private CorrectDialog correctDialog;
 
     private int totalSizeofQuiz=0;
 
@@ -67,6 +69,7 @@ public class QuizActivity extends AppCompatActivity {
         buttonLabelColor = rb1.getTextColors();
 
         finalScoreDialog = new FinalScoreDialog (this);
+        correctDialog = new CorrectDialog (this);
     }
 
     private void setupUI() {
@@ -190,8 +193,11 @@ public class QuizActivity extends AppCompatActivity {
                     correctAns++;
                     textViewCorrect.setText("Correct : " + String.valueOf(correctAns));
 
+
                     quizScore = quizScore + 10;
                     textViewScore.setText("Score: " + String.valueOf(quizScore));
+
+                    correctDialog.correctDialog(quizScore);
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -227,6 +233,7 @@ public class QuizActivity extends AppCompatActivity {
 
                     quizScore = quizScore + 10;
                     textViewScore.setText("Score: " + String.valueOf(quizScore));
+                    correctDialog.correctDialog(quizScore);
 
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -263,6 +270,8 @@ public class QuizActivity extends AppCompatActivity {
 
                     quizScore = quizScore + 10;
                     textViewScore.setText("Score: " + String.valueOf(quizScore));
+                    correctDialog.correctDialog(quizScore);
+
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -297,6 +306,7 @@ public class QuizActivity extends AppCompatActivity {
 
                     quizScore = quizScore + 10;
                     textViewScore.setText("Score: " + String.valueOf(quizScore));
+                    correctDialog.correctDialog(quizScore);
 
                     handler.postDelayed(new Runnable() {
                         @Override
