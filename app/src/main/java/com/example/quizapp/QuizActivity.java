@@ -464,19 +464,41 @@ public class QuizActivity extends AppCompatActivity {
 
     } else{
             totalSizeofQuiz = questionList.size();
+            Toast.makeText(this,"Quiz Finished", Toast.LENGTH_SHORT).show();
+            rb1.setClickable(false);
+            rb2.setClickable(false);
+            rb3.setClickable(false);
+            rb4.setClickable(false);
+            buttonConfirmNext.setClickable(false);
 
             handler.postDelayed(new Runnable() {
 
                 @Override
                 public void run() {
 
-                    // Result Activity
 
-                    finalScoreDialog.finalScoreDialog(correctAns, wrongAns, totalSizeofQuiz);
+
+                    // Result Activity
+                    finalResult();
+
+                    //dialog box
+                    // finalScoreDialog.finalScoreDialog(correctAns, wrongAns, totalSizeofQuiz);
 
                 }
             }, 2000);
         }
+    }
+
+    private void finalResult(){
+        Intent resultData = new Intent(QuizActivity.this, ResultActivity.class);
+
+        resultData.putExtra("UserScore" , score);
+        resultData.putExtra("Total Question" , questionTotalCount);
+        resultData.putExtra("Correct Question" , correctAns);
+        resultData.putExtra("Wrong Question" , wrongAns);
+
+
+        startActivity(resultData);
     }
 
 }
