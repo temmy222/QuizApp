@@ -422,7 +422,9 @@ public class QuizActivity extends AppCompatActivity {
         int minutes = (int) (timeLeftInMillis/1000) / 60;
         int seconds = (int) (timeLeftInMillis/1000) % 60;
 
-        String timeFormatted = String.format(Locale.getDefault(),"&02d:%02d", minutes, seconds);
+       // String timeFormatted = String.format(Locale.getDefault(),"02d:%02d", minutes, seconds);
+
+        String timeFormatted = String.format(Locale.getDefault(),"%02d:%02d", minutes, seconds);
         textViewCountDown.setText(timeFormatted);
 
         if (timeLeftInMillis < 10000){
@@ -513,6 +515,8 @@ public class QuizActivity extends AppCompatActivity {
 
                 @Override
                 public void run() {
+
+                    // Result Activity
 
                     finalScoreDialog.finalScoreDialog(correctAns, wrongAns, totalSizeofQuiz);
 
