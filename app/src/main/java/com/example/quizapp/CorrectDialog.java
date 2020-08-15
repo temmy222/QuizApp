@@ -8,14 +8,16 @@ import android.widget.TextView;
 
 public class CorrectDialog {
 
-    private Context mContext;
-    private Dialog correctDialog;
+    private Context mContext; // variable for the current context
+    private Dialog correctDialog; // variable for the dialog box
+    private QuizActivity mQuizActivity;
 
     public CorrectDialog(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void correctDialog (int score) {
+    public void correctDialog (int score, QuizActivity quizActivity) {
+        mQuizActivity = quizActivity;
         correctDialog = new Dialog(mContext);
         correctDialog.setContentView(R.layout.correct_dialog);
 
@@ -27,6 +29,7 @@ public class CorrectDialog {
             @Override
             public void onClick(View v) {
                 correctDialog.dismiss();
+                mQuizActivity.showQuestions();
 
             }
         });

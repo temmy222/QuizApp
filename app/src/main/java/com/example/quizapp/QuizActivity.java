@@ -18,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Locale;
 
@@ -211,36 +210,22 @@ public class QuizActivity extends AppCompatActivity {
                     quizScore = quizScore + 10;
                     textViewScore.setText("Score: " + String.valueOf(quizScore));
 
-                    correctDialog.correctDialog(quizScore);
+                    correctDialog.correctDialog(quizScore, this);
 
                     FLAG = 1;
                     playAudioForAnswers.setAudioForAnswer(FLAG);
 
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            showQuestions();
-
-                        }
-                    } ,500 );
                 }
                 else {
                     changeToIncorrectColor(rbSelected);
                     wrongAns++;
                     textViewWrong.setText("Wrong : " + String.valueOf(wrongAns));
                     String correctAnswer = (String) rb1.getText();
-                    wrongDialog.wrongDialog(correctAnswer);
+                    wrongDialog.wrongDialog(correctAnswer, this);
 
                     FLAG = 2;
                     playAudioForAnswers.setAudioForAnswer(FLAG);
 
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            showQuestions();
-
-                        }
-                    } ,500 );
 
                 }
 
@@ -257,11 +242,12 @@ public class QuizActivity extends AppCompatActivity {
 
                     quizScore = quizScore + 10;
                     textViewScore.setText("Score: " + String.valueOf(quizScore));
-                    correctDialog.correctDialog(quizScore);
+                    correctDialog.correctDialog(quizScore, this);
 
                     FLAG = 1;
                     playAudioForAnswers.setAudioForAnswer(FLAG);
 
+                    /*
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -269,24 +255,20 @@ public class QuizActivity extends AppCompatActivity {
 
                         }
                     } ,500 );
+                    // used to determine what happens when the user finishes clicking
+                     */
                 }
                 else {
                     changeToIncorrectColor(rbSelected);
                     wrongAns++;
                     textViewWrong.setText("Wrong : " + String.valueOf(wrongAns));
                     String correctAnswer = (String) rb2.getText();
-                    wrongDialog.wrongDialog(correctAnswer);
+                    wrongDialog.wrongDialog(correctAnswer, this);
 
                     FLAG = 2;
                     playAudioForAnswers.setAudioForAnswer(FLAG);
 
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            showQuestions();
 
-                        }
-                    } ,500 );
 
                 }
 
@@ -303,36 +285,22 @@ public class QuizActivity extends AppCompatActivity {
 
                     quizScore = quizScore + 10;
                     textViewScore.setText("Score: " + String.valueOf(quizScore));
-                    correctDialog.correctDialog(quizScore);
+                    correctDialog.correctDialog(quizScore, this);
 
                     FLAG = 1;
                     playAudioForAnswers.setAudioForAnswer(FLAG);
 
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            showQuestions();
-
-                        }
-                    } ,500 );
                 }
                 else {
                     changeToIncorrectColor(rbSelected);
                     wrongAns++;
                     textViewWrong.setText("Wrong : " + String.valueOf(wrongAns));
                     String correctAnswer = (String) rb3.getText();
-                    wrongDialog.wrongDialog(correctAnswer);
+                    wrongDialog.wrongDialog(correctAnswer, this);
 
                     FLAG = 2;
                     playAudioForAnswers.setAudioForAnswer(FLAG);
 
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            showQuestions();
-
-                        }
-                    } ,500 );
 
                 }
                 break;
@@ -348,36 +316,22 @@ public class QuizActivity extends AppCompatActivity {
 
                     quizScore = quizScore + 10;
                     textViewScore.setText("Score: " + String.valueOf(quizScore));
-                    correctDialog.correctDialog(quizScore);
+                    correctDialog.correctDialog(quizScore, this);
 
                     FLAG = 1;
                     playAudioForAnswers.setAudioForAnswer(FLAG);
 
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            showQuestions();
-
-                        }
-                    } ,500 );
                 }
                 else {
                     changeToIncorrectColor(rbSelected);
                     wrongAns++;
                     textViewWrong.setText("Wrong : " + String.valueOf(wrongAns));
                     String correctAnswer = (String) rb4.getText();
-                    wrongDialog.wrongDialog(correctAnswer);
+                    wrongDialog.wrongDialog(correctAnswer, this);
 
                     FLAG = 2;
                     playAudioForAnswers.setAudioForAnswer(FLAG);
 
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            showQuestions();
-
-                        }
-                    } ,500 );
 
                 }
                 break;
@@ -476,7 +430,7 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    private void showQuestions()
+    public void showQuestions()
     {
         rbGroup.clearCheck();  // clear the previous check mark of the quiz
 
