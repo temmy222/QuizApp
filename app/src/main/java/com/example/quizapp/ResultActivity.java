@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -56,6 +57,7 @@ public class ResultActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         int score = intent.getIntExtra("UserScore",0);
+        Log.d("Score Output" , String.valueOf(score));
         int totalQuestion = intent.getIntExtra("Total Question",0);
         int correctQuestion = intent.getIntExtra("Correct Question",0);
         int wrongQuestion = intent.getIntExtra("Wrong Question",0);

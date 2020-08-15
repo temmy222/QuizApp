@@ -492,7 +492,7 @@ public class QuizActivity extends AppCompatActivity {
     private void finalResult(){
         Intent resultData = new Intent(QuizActivity.this, ResultActivity.class);
 
-        resultData.putExtra("UserScore" , score);
+        resultData.putExtra("UserScore" , quizScore); // used for passing data to a new activity (the putExtra method)
         resultData.putExtra("Total Question" , questionTotalCount);
         resultData.putExtra("Correct Question" , correctAns);
         resultData.putExtra("Wrong Question" , wrongAns);
