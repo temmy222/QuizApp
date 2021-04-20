@@ -369,8 +369,6 @@ public class QuizActivity extends AppCompatActivity {
     }
 
 
-
-
     private void updateCountDownText(){
 
         int minutes = (int) (timeLeftInMillis/1000) / 60;
